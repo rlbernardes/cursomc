@@ -1,6 +1,7 @@
 package com.udemy.cursomc.services;
 
 import com.udemy.cursomc.domain.Categoria;
+import com.udemy.cursomc.domain.Cliente;
 import com.udemy.cursomc.dto.CategoriaDTO;
 import com.udemy.cursomc.repositories.CategoriaRepository;
 import com.udemy.cursomc.services.exceptions.DataIntegrityException;
@@ -32,8 +33,13 @@ public class CategoriaService {
     }
 
     public Categoria update(Categoria categoria) {
-        find(categoria.getId());
-        return categoriaRepository.save(categoria);
+        Categoria newCategoria = find(categoria.getId());
+        udateData(newCategoria, categoria);
+        return categoriaRepository.save(newCategoria);
+    }
+
+    private void udateData(Categoria newCategoria, Categoria categoria) {
+        newCategoria.setNome(categoria.getNome());
     }
 
     public void delte(Integer id) {
