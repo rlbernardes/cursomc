@@ -1,6 +1,7 @@
 package com.udemy.cursomc.services;
 
 import com.udemy.cursomc.domain.Categoria;
+import com.udemy.cursomc.dto.CategoriaDTO;
 import com.udemy.cursomc.repositories.CategoriaRepository;
 import com.udemy.cursomc.services.exceptions.DataIntegrityException;
 import com.udemy.cursomc.services.exceptions.ObjectNotFoundException;
@@ -54,4 +55,7 @@ public class CategoriaService {
         return categoriaRepository.findAll(pageRequest);
     }
 
+    public Categoria fromDTO(CategoriaDTO categoriaDTO){
+        return new Categoria(categoriaDTO.getId(), categoriaDTO.getNome());
+    }
 }
